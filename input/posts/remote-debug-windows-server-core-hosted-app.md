@@ -29,7 +29,7 @@ Get-Service -Name msvsmon150
 
 Now that the remote is up and running, open your project with Visual Studio 2017, set the breakpoints you need and open the **"Attach to Process"** dialog (Debug > Attach to Process). Input the IP of the machine where you just installed the remote debugger and use port **4022** which is the default. After that click on Refresh and you should see the list of processes running on that machine, like the below figure:
 
-![Visual Studio - Attach to Process dialog](/assets/img/vs_attach_to_process.png)
+![Visual Studio - Attach to Process dialog](/images/vs_attach_to_process.png)
 
 Final step, as you may know, just select the process you want and click on Attach. Execute any necessary steps and the debugger should now stop in the breakpoints you've setup.
 

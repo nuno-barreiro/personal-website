@@ -100,7 +100,7 @@ Finally update the *package.json* file to properly configure the entry point of 
 
 We are now ready to start our app. All we have to do is to execute npm start from the command line and:
 
- ![Electron demo initial screen](/assets/img/electron-tsc-app-initial-screen.png)
+ ![Electron demo initial screen](/images/electron-tsc-app-initial-screen.png)
 
 Our app is now running and since we included electron-reload in our application we’ll also be able to change the code and see those changes reflected in our application without having to restart it.
 

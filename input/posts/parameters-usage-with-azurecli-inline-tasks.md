@@ -44,6 +44,6 @@ ACCOUNT_NAME=testcontaineraccount CONTAINER_SOURCE=$web
 
 The pipeline task configuration screen will then look something like the below figure.
 
-![Azure CLI task screenshot](/assets/img/azure_cli_arguments_linux.png)
+![Azure CLI task screenshot](/images/azure_cli_arguments_linux.png)
 
 Hope this helped. See you on the next post.
