@@ -8,7 +8,7 @@ Tags:
 
 The Corona virus outbreak is here and is changing the way companies work, including Evident my current company. Truth is that many workers are now at home and posts about remote work are being published every day especially in our industry. 
 
-*A quick aside, it's really a shame to see that it takes a pandemic to happen for companies to start allowing people to work from home and noticing that their productivity can even increase. If this whole situation wasn't so serious, I would say that as remote working goes maybe this outbreak is a blessing in disguise (old sayings are always right).*
+*A quick aside, it's really a shame to see that it takes a pandemic to happen for companies to start allowing people to work from home and noticing that their productivity can even increase.*
 
 Slack has always been one of the most, if not the most, used communication channel at my company. But with great use comes greater misuse and it's very easy to abuse some features while overlooking others, which ultimately can affect the way we communicate and our productivity. 
 
