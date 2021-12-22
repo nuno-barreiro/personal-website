@@ -1,8 +1,9 @@
 ---
-Title: Remove retained Azure DevOps pipelines
+Title: Cleanup Azure DevOps pipelines retained by releases
 Published: 2021-12-22 15:00:00 +0000
 Tags: 
-  - Azure DevOps
+  - Azure 
+  - DevOps
 ---
 
 One situation I've come across a while ago was not being able to remove some deprecated pipelines due to the following error:
@@ -22,50 +23,7 @@ Please follow the [instructions](https://docs.microsoft.com/en-us/azure/devops/o
 
 Make sure to fill in the "project_url", the "encoded_pat" and the "build_definition_ids" variables, before running the script. You can get the build IDs from the URL when you enter a build definition using the DevOps portal
 
-The project url can also be get from the address bar, and for this script it needs to be in the format: "https://dev.azure.com/{org name}/{project name}".
+The project url can also be get from the address bar, and for this script it needs to be in the format: `https://dev.azure.com/{org name}/{project name}`.
 
-```python
-import pprint 
-import requests 
-
-project_url = ""
-encoded_pat = ""
-build_definition_ids = [] 
-
-base_api_url = f"{project_url}/_apis/build" 
-request_headers = { "Authorization": f"Basic {encoded_pat}" } 
-fiddler_proxies = { "http": "http://localhost:8888", "https": "http://localhost:8888" } 
-
-def getBuildByDefinition(definition_id): 
-    params = { "definitions": definition_id, "statusFilter": "completed", "api-version": "6.1-preview.7" } 
-    response = requests.get(f"{base_api_url}/builds", headers=request_headers, params=params, proxies=fiddler_proxies, verify=False) 
-    response.raise_for_status() 
-    return response.json()["value"] 
-
-def getBuildLeases(build_id): 
-    params = { "api-version": "6.1-preview.1" } 
-    response = requests.get(f"{base_api_url}/builds/{build_id}/leases", headers=request_headers, params=params, proxies=fiddler_proxies, verify=False) 
-    response.raise_for_status() 
-    return response.json()["value"] 
-
-def deleteBuildLease(lease_id): 
-    params = { "api-version": "6.1-preview.1" } 
-    response = requests.delete(f"{base_api_url}/retention/leases?ids={lease_id}", headers=request_headers, params=params, proxies=fiddler_proxies, verify=False) 
-    response.raise_for_status() 
-    return response.status_code == 204 
-
-for definition_id in build_definition_ids: 
-    builds = getBuildByDefinition(definition_id) 
-    for build in builds: 
-        build_id = build["id"] 
-        if build["retainedByRelease"] == True: 
-            leases = getBuildLeases(build_id) 
-            for lease in leases: 
-                lease_id = lease["leaseId"] 
-                if lease["protectPipeline"] == True: 
-                    delete_result = deleteBuildLease(lease_id) 
-                    pprint.pp(f"Lease {lease_id} of build {build_id} delete status => {delete_result}") 
-        else: 
-            pprint.pp(f"Build {build_id} is not retained by release") 
-```
+<script src="https://gist.github.com/nuno-barreiro/b14ec7ee58c718400dbb14a8860716c6.js"></script>
 
